@@ -11,7 +11,6 @@ from pymem.ptypes import RemotePointer
 from subprocess import Popen
 from time import sleep
 
-
 # The game were hacking
 mem = Pymem("GTA5")
 # The dll we write to
@@ -31,7 +30,7 @@ x_axis = [0X1A0]
 y_axis = [0X134]
 z_axis = [0X138]
 player_speed = [0x5E0]
-speed_offsets = [0xA84]
+speed_offsets = [0xA88]
 
 # AFK Bot
 SendInput = ctypes.windll.user32.SendInput
@@ -150,7 +149,7 @@ def speed():
     addr = getpointeraddress(module + 0x0261C3E8, speed_offsets)
     while 1:
         try:
-            mem.write_int(addr,   0x4020000000000000)
+            mem.write_int(addr, 0x40400000)
         except pymem.exception.MemoryWriteError as e:
             print(f"Error writing memory: {e}")
         if keyboard.is_pressed("F1"):
