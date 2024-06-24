@@ -18,7 +18,7 @@ module = module_from_name(mem.process_handle, "GTA5.exe").lpBaseOfDll
 # static pointer offsets
 health_offsets = [0x280]
 ap_offsets = [0x54]
-laser_offsets = [0x270, 0X8, 0X0, 0X0, 0X48, 0X0, 0X18]
+mini_offsets = [0x50, 0X8, 0X0, 0X18]
 rev_offsets = [0XD0, 0X20, 0X48, 0X0, 0X18]
 c4_offsets = [0X0, 0X708]
 cops_offsets = [0x620]
@@ -281,8 +281,8 @@ def kill_hack():
             print(f"Error writing memory: {e}")
 
 
-def laser_hack():
-    addr = getpointeraddress(module + 0x0295E190, laser_offsets)
+def mini_hack():
+    addr = getpointeraddress(module + 0x029630F0, mini_offsets)
     if addr is not None:
         try:
             mem.write_int(addr, 0x479600000)
@@ -460,7 +460,7 @@ label3 = tk.Label(master=root, text='Non Loops', bg='red', fg='black')
 label3.grid(row=0, column=2)
 button14 = tk.Button(root, text="Vehicle Health", bg='black', fg='white', command=health_hack)
 button14.grid(row=1, column=2)
-button15 = tk.Button(root, text="Minigun Ammo", bg='black', fg='white', command=laser_hack)
+button15 = tk.Button(root, text="Minigun Ammo", bg='black', fg='white', command=mini_hack)
 button15.grid(row=2, column=2)
 button16 = tk.Button(root, text="Auto Pistol Ammo", bg='black', fg='white', command=pistol_hack)
 button16.grid(row=3, column=2)
